@@ -181,10 +181,13 @@ public:
 
     }
     bool insertAtIndex(int index, int data){
-
+        if(index < 0){
+            std::cerr << "Invalid index\n";
+            return false;
+        }
     }
     bool deleteAtIndex(int index){
-        
+
     }
     void printForward(){
         dNode* current = head;
