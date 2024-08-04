@@ -184,7 +184,7 @@ public:
         if(index < 0){
             int x = 200;
             std::cout << x <<"\n";
-            std::cerr << "Invalid index\n"; //test
+            std::cerr << "Invalid index\n"; //test 235
             return false;
         }
     }
