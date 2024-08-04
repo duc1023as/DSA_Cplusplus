@@ -182,6 +182,8 @@ public:
     }
     bool insertAtIndex(int index, int data){
         if(index < 0){
+            int x = 200;
+            std::cout << x <<"\n";
             std::cerr << "Invalid index\n"; //test
             return false;
         }
