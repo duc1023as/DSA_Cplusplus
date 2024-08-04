@@ -180,6 +180,12 @@ public:
         return true;
 
     }
+    bool insertAtIndex(int index, int data){
+
+    }
+    bool deleteAtIndex(int index){
+        
+    }
     void printForward(){
         dNode* current = head;
         while(current != nullptr){
