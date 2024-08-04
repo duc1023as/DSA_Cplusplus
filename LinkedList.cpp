@@ -182,7 +182,7 @@ public:
     }
     bool insertAtIndex(int index, int data){
         if(index < 0){
-            std::cerr << "Invalid index\n"; //test
+            std::cerr << "Invalid index\n"; //test // test
             return false;
         }
     }
