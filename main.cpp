@@ -1,36 +1,24 @@
 #include <iostream>
-#include "LinkedList.cpp"
+#include "SinglyLinkedList.h"
 
 int main(int argc, char* argv[]){
-#if 0
     SinglyLinkedList list;
-    list.insertAtEnd(256);
-    list.insertAtHead(257);
-    list.insertAtHead(500);
-    list.insertAtEnd(512);
-    list.insertAtHead(456789);
-    list.insertAtHead(578);
-    list.insertAtEnd(12333);
-    list.insertAtHead(2222);
-    list.insertAtHead(5555);
-    list.printList(); // first line
+    list.insertAtHead(100);
+    list.insertAtHead(200);
+    list.insertAtHead(300);
+    list.insertAtEnd(400);
+    list.insertAtEnd(500);
+    list.insertAtHead(600);
+    list.printList();
     list.deleteAtHead();
+    list.printList();
     list.deleteAtEnd();
-    list.printList(); // second line
-    list.insertAtIndex(1,236);
-    list.printList(); // third line
-    list.insertAtIndex(5,555555);
-    list.printList(); // 4th line
-    list.deleteAtIndex(2);
-    list.printList(); // 5th line
-#endif
-    DoublyLinkedList list;
-    list.insertAtHead(222);;
-    list.insertAtHead(555);
-    list.insertAtHead(666);
-    list.insertAtTail(123);
-    list.insertAtTail(1233);
-    list.printForward();
-    list.printBackward();
+    list.printList();
+    list.insertAtIndex(1,555);
+    list.printList();
+    list.insertAtIndex(0,678);
+    list.printList();
+    list.deleteAtIndex(3);
+    list.printList();
     return 0;
 }
