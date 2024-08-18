@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+using namespace singlyLinkedList;
+
 bool SinglyLinkedList::insertAtHead(int data){
     Node* newNode = new Node(data);
     if(head == nullptr){
