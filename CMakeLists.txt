@@ -5,23 +5,21 @@ project(DSA)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-# find_package(OpenSSL REQUIRED)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/executable)
 
-set(HEADERS
-    ${CMAKE_SOURCE_DIR}/include/LinkedList
-)
-
-include_directories(${HEADERS})
-
-file(GLOB LINKED_LIST ${CMAKE_SOURCE_DIR}/src/LinkedList/*.cpp)
+add_subdirectory(LinkedList)
 
 set(SOURCES
-    ${LINKED_LIST}
     ${CMAKE_SOURCE_DIR}/main.cpp
 )
 
+# find_package(fmt CONFIG REQUIRED)
+
 add_executable(${PROJECT_NAME} ${SOURCES})
 
-# target_link_libraries(${PROJECT_NAME} PRIVATE 
-#     ${OPENSSL_LIBRARIES}
-# )
+target_link_libraries(${PROJECT_NAME} PRIVATE 
+    CPP::LinkedList
+    fmt::fmt
+)

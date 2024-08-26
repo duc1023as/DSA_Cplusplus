@@ -1,10 +1,11 @@
 {
+    "version": "0.2.0",
     "configurations": [
         {
-            "name": "C/C++: g++ build and debug active file",
+            "name": "Debug C++",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/output.out",
+            "program": "${workspaceFolder}/build/DSA/DSA",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -16,16 +17,16 @@
                     "description": "Enable pretty-printing for gdb",
                     "text": "-enable-pretty-printing",
                     "ignoreFailures": true
-                },
-                {
-                    "description": "Set Disassembly Flavor to Intel",
-                    "text": "-gdb-set disassembly-flavor intel",
-                    "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "C/C++: g++ build active file",
-            "miDebuggerPath": "/usr/bin/gdb"
+            "preLaunchTask": "build_debug",
+            "miDebuggerPath": "/usr/bin/gdb",
+            "miDebuggerArgs": "",
+            "targetArchitecture": "x86_64",
+            "logging": {
+                "engineLogging": false
+            },
+            "internalConsoleOptions": "openOnSessionStart"
         }
-    ],
-    "version": "2.0.0"
+    ]
 }

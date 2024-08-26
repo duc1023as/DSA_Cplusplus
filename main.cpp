@@ -1,10 +1,18 @@
 #include <iostream>
+#include <functional>
 #include "SinglyLinkedList.h"
 #include "DoublyLinkedList.h"
 
+void testCallBack(int x, std::function<void(const std::string& name)> &&callback){
+    [callback = std::move(callback)](){
+        std::cout << "Hello World\n";
+        callback("DMD");
+    };
+}
+
 int main(int argc, char* argv[]){
-#if 0
-    SinglyLinkedList list;
+#if 1
+    singlyLinkedList::SinglyLinkedList list;
     list.insertAtHead(100);
     list.insertAtHead(200);
     list.insertAtHead(300);
@@ -24,6 +32,7 @@ int main(int argc, char* argv[]){
     list.printList();
 #endif
 
+#if 0
     doublyLinkedList::DoublyLinkedList list;
     list.insertAtHead(100);
     list.insertAtHead(200);
@@ -44,5 +53,14 @@ int main(int argc, char* argv[]){
     list.printForward();
     list.deleteAtIndex(2);
     list.printForward();
+#endif
     return 0;
 }
+
+// #include <fmt/core.h>
+
+// int main()
+// {
+//     fmt::print("Hello World!\n");
+//     return 0;
+// }

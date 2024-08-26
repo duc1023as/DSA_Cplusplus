@@ -1,5 +1,4 @@
 #include "SinglyLinkedList.h"
-
 #include <iostream>
 
 using namespace singlyLinkedList;
