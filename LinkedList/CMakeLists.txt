@@ -9,7 +9,7 @@ set(HeaderPath
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
-file(GLOB_RECURSE SOURCES
+file(GLOB SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/src/**/*.cpp
 )

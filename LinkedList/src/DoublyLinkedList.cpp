@@ -1,166 +1,180 @@
 #include "DoublyLinkedList.h"
-
 #include <iostream>
-using namespace doublyLinkedList;
 
-bool DoublyLinkedList::insertAtHead(int data){
-    Node* newNode = new Node(data);
-    if(head == nullptr){
-        head = tail = newNode;
+namespace DoublyLinkedList
+{
+    bool DoublyLinkedList::insertAtHead(int data)
+    {
+        Node* newNode = new Node(data);
+        if(head == nullptr)
+        {
+            head = tail = newNode;
+            return true;
+        }
+        newNode->next = head;
+        head->pre = newNode;
+        head = newNode;
         return true;
     }
-    newNode->next = head;
-    head->pre = newNode;
-    head = newNode;
-    return true;
-}
-bool DoublyLinkedList::insertAtEnd(int data){
-    Node* newNode = new Node(data);
-    if(tail == nullptr){
-        head = tail = newNode;
-        return true;
-    }
-    tail->next = newNode;
-    newNode->pre = tail;
-    tail = newNode;
-    return true;
-}
-bool DoublyLinkedList::deleteAtHead(){
-    if(head == nullptr){
-        std::cerr << "List is empty\n";
-        return false;
-    }
-    Node* tempt = head;
-    head = head->next;
-    if(head != nullptr){
-        head->pre = nullptr;
-    }
-    else{
-        tail = nullptr;
-    }
-    delete tempt;
-    return true;
-}
-bool DoublyLinkedList::deleteAtEnd(){
-    if(head == nullptr){
-        std::cerr << "List is empty\n";
-        return false;
-    }
-    Node* tempt = tail;
-    tail = tail->pre;
-    if(tail != nullptr){
-        tail->next = nullptr;
-    }
-    else{
-        head = nullptr;
-    }
-    delete tempt;
-    return true;
-}
-bool DoublyLinkedList::insertAtIndex(int index, int data){
-    if(index < 0){
-        std::cerr << "Invalid index\n";
-        return false;
-    }
-
-    if(head == nullptr){
-        std::cerr << "List is empty\n";
-        return false;
-    }
-
-    if(index == 0){
-        insertAtHead(data);
-        return true;
-    }
-
-    Node* newNode = new Node(data);
-
-    Node* current = head;
-    for(int i=0; i<index-1 && current != nullptr; i++){
-        current = current->next;
-    }
-
-    if(current == nullptr){
-        std::cerr << "Index is out of bounds\n";
-        return false;
-    }
-    newNode->next = current->next;
-    newNode->pre = current;
-    if(current->next != nullptr){
-        current->next->pre = newNode;
-    }
-    else{
+    bool DoublyLinkedList::insertAtEnd(int data)
+    {
+        Node* newNode = new Node(data);
+        if(tail == nullptr)
+        {
+            tail = head = nullptr;
+            return true;
+        }
+        tail->next = newNode;
+        newNode->pre = tail;
         tail = newNode;
-    }
-    current->next = newNode;
-
-    return true;
-}
-bool DoublyLinkedList::deleteAtIndex(int index){
-    if(index < 0){
-        std::cerr << "Invalid index\n";
-        return false;
-    }
-
-    if(head == nullptr){
-        std::cerr << "List is empty\n";
-        return false;
-    }
-
-    if(index == 0){
-        deleteAtHead();
         return true;
     }
-
-    Node* current = head;
-    for(int i=0; i<index && current != nullptr; i++){
-        current = current->next;
+    bool DoublyLinkedList::deleteAtHead()
+    {
+        if(head == nullptr)
+        {
+            std::cerr << "List is empty\n";
+            return false;
+        }
+        Node* tempt = head;
+        if(head == tail)
+        {
+            head = tail = nullptr;
+        }
+        else
+        {
+            head = head->next;
+            head->pre = nullptr;
+        }
+        delete tempt;
+        return true;
     }
-
-    if(current == nullptr){
-        std::cerr << "Index is out of bounds\n";
-        return false;
+    bool DoublyLinkedList::deleteAtTail()
+    {
+        if(tail == nullptr)
+        {
+            std::cerr << "List is empty\n";
+            return false;
+        }
+        Node* tempt = tail;
+        if(tail == head)
+        {
+            tail = head = nullptr;
+        }
+        else
+        {
+            tail = tail->pre;
+            tail->next = nullptr;
+        }
+        delete tempt;
+        return true;
     }
-
-    Node* tempt = current->next;
-
-    if(current->pre != nullptr){
-        current->pre->next = current->next;
+    bool DoublyLinkedList::insertAtIndex(int index, int data)
+    {
+        if(index < 0)
+        {
+            std::cerr << "Invalid index\n";
+            return false;
+        }
+        if(index == 0)
+        {
+            return insertAtHead(data);
+        }
+        Node* current = head;
+        for(int i=0; i<index-1 && current!=nullptr; i++)
+        {
+            current = current->next;
+        }
+        if(current == nullptr)
+        {
+            std::cerr << "Index is out of range\n";
+            return false;
+        }
+        Node* newNode = new Node(data);
+        newNode->next = current->next;
+        newNode->pre = current;
+        if(current->next != nullptr)
+        {
+            current->next->pre = newNode;
+        }
+        current->next = newNode;
+        if(newNode->next == nullptr)
+        {
+            tail = newNode;
+        }
+        return true;
     }
-
-    if(current->next != nullptr){
-        current->next->pre = current->pre;
+    bool DoublyLinkedList::deleteAtIndex(int index)
+    {
+        if(index < 0)
+        {
+            std::cerr << "Invalid index\n";
+            return false;
+        }
+        if(head == nullptr)
+        {
+            std::cerr << "List is empty\n";
+            return false;
+        }
+        Node* current = head;
+        for(int i=0; i<index && current!= nullptr; i++)
+        {
+            current = current->next;
+        }
+        if(current == nullptr)
+        {
+            std::cerr << "Index is out of range.\n";
+            return false;
+        }
+        Node* tempt = current;
+        if(current->pre != nullptr)
+        {
+            current->pre->next = current->next;
+        }
+        else
+        {
+            head = current->pre;
+        }
+        if(current->next != nullptr)
+        {
+            current->next->pre = current->pre;
+        }
+        else
+        {
+            tail = current->pre;
+        }
+        delete tempt;
+        return true;
     }
-
-    if(current == tail){
-        tail = current->pre;
+    void DoublyLinkedList::printForward()
+    {
+        Node* current = head;
+        while(current != nullptr)
+        {
+            std::cout << current->data << " === ";
+            current = current->next;
+        }
+        std::cout << "nullptr\n";
     }
-
-    delete current;
-
-    return true;
-}
-void DoublyLinkedList::printForward(){
-    Node* current = head;
-    while(current != nullptr){
-        std::cout << current->data << "---";
-        current = current->next;
+    void DoublyLinkedList::printBackward()
+    {
+        Node* current = tail;
+        while(current != nullptr)
+        {
+            std::cout << current->data << " === ";
+            current = current->pre;
+        }
+        std::cout << "nullptr\n";
     }
-    std::cout << "nullptr\n";
-}
-void DoublyLinkedList::printBackward(){
-    Node* current = tail;
-    while(current != nullptr){
-        std::cout << current->data << "---";
-        current = current->pre;
+    DoublyLinkedList::~DoublyLinkedList()
+    {
+        Node* tempt = nullptr;
+        while(head != nullptr)
+        {
+            tempt = head;
+            head = head->next;
+            delete tempt;
+        }
+        tempt = nullptr;
     }
-    std::cout << "nullptr\n";
-}
-DoublyLinkedList::~DoublyLinkedList(){
-    Node* tempt = nullptr;
-    while(head != nullptr){
-        tempt = head;
-        head = head->next;
-    }
-    tempt = nullptr;
 }

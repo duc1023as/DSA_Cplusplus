@@ -1,18 +1,11 @@
 #include <iostream>
-#include <functional>
 #include "SinglyLinkedList.h"
 #include "DoublyLinkedList.h"
 
-void testCallBack(int x, std::function<void(const std::string& name)> &&callback){
-    [callback = std::move(callback)](){
-        std::cout << "Hello World\n";
-        callback("DMD");
-    };
-}
-
 int main(int argc, char* argv[]){
-#if 1
-    singlyLinkedList::SinglyLinkedList list;
+#if 0
+    std::cout << "==============Singly Linked List==================\n";
+    SinglyLinkedList::SinglyLinkedList list;
     list.insertAtHead(100);
     list.insertAtHead(200);
     list.insertAtHead(300);
@@ -30,24 +23,25 @@ int main(int argc, char* argv[]){
     list.printList();
     list.deleteAtIndex(3);
     list.printList();
+    list.deleteAtIndex(0);
+    list.printList();
 #endif
 
-#if 0
-    doublyLinkedList::DoublyLinkedList list;
+#if 1
+    std::cout << "==============Doubly Linked List==================\n";
+    DoublyLinkedList::DoublyLinkedList list;
     list.insertAtHead(100);
     list.insertAtHead(200);
     list.insertAtHead(300);
     list.insertAtHead(400);
     list.printForward();
-    // list.printBackward();
     list.insertAtEnd(500);
     list.insertAtEnd(600);
     list.insertAtEnd(700);
     list.printForward();
-    // list.printBackward();
     list.deleteAtHead();
     list.printForward();
-    list.deleteAtEnd();
+    list.deleteAtTail();
     list.printForward();
     list.insertAtIndex(3,555);
     list.printForward();
@@ -56,11 +50,3 @@ int main(int argc, char* argv[]){
 #endif
     return 0;
 }
-
-// #include <fmt/core.h>
-
-// int main()
-// {
-//     fmt::print("Hello World!\n");
-//     return 0;
-// }
