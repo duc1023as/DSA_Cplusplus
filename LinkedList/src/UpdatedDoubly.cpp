@@ -1,14 +1,14 @@
-#include "DoublyLinkedList.h"
+#include "UpdatedDoubly.h"
 #include <iostream>
 
-namespace DoublyLinkedList
+namespace UpdatedDoubly
 {
-    bool DoublyLinkedList::insertAtHead(int data)
+    bool UpdatedDoubly::insertAtHead(int data)
     {
         Node* newNode = new Node(data);
         if(head == nullptr)
         {
-            head = tail = newNode;
+            head = newNode;
             length++;
             return true;
         }
@@ -18,22 +18,26 @@ namespace DoublyLinkedList
         length++;
         return true;
     }
-    bool DoublyLinkedList::insertAtEnd(int data)
+    bool UpdatedDoubly::insertAtEnd(int data)
     {
         Node* newNode = new Node(data);
-        if(tail == nullptr)
+        if(head == nullptr)
         {
-            tail = head = newNode;
+            head = newNode;
             length++;
             return true;
         }
-        tail->next = newNode;
-        newNode->pre = tail;
-        tail = newNode;
+        Node* current = head;
+        while(current->next != nullptr)
+        {
+            current = current->next;
+        }
+        current->next = newNode;
+        newNode->pre = current;
         length++;
         return true;
     }
-    bool DoublyLinkedList::deleteAtHead()
+    bool UpdatedDoubly::deleteAtHead()
     {
         if(head == nullptr)
         {
@@ -41,9 +45,9 @@ namespace DoublyLinkedList
             return false;
         }
         Node* tempt = head;
-        if(head == tail)
-        {
-            head = tail = nullptr;
+        if(head->next == nullptr)
+        {   
+            head = nullptr;
         }
         else
         {
@@ -54,28 +58,30 @@ namespace DoublyLinkedList
         length--;
         return true;
     }
-    bool DoublyLinkedList::deleteAtTail()
+    bool UpdatedDoubly::deleteAtTail()
     {
-        if(tail == nullptr)
+        if(head == nullptr)
         {
             std::cerr << "List is empty\n";
             return false;
         }
-        Node* tempt = tail;
-        if(tail == head)
+        Node* current = head;
+        while (current->next != nullptr)
         {
-            tail = head = nullptr;
+            current = current->next;
         }
-        else
+        if(current->pre != nullptr)
         {
-            tail = tail->pre;
-            tail->next = nullptr;
+            current->pre->next = nullptr;
         }
-        delete tempt;
+        else{
+            head = nullptr;
+        }
+        delete current;
         length--;
         return true;
     }
-    bool DoublyLinkedList::insertAtIndex(int index, int data)
+    bool UpdatedDoubly::insertAtIndex(int index, int data)
     {
         if(index < 0)
         {
@@ -104,14 +110,10 @@ namespace DoublyLinkedList
             current->next->pre = newNode;
         }
         current->next = newNode;
-        if(newNode->next == nullptr)
-        {
-            tail = newNode;
-        }
         length++;
         return true;
     }
-    bool DoublyLinkedList::deleteAtIndex(int index)
+    bool UpdatedDoubly::deleteAtIndex(int index)
     {
         if(index < 0)
         {
@@ -138,23 +140,15 @@ namespace DoublyLinkedList
         {
             current->pre->next = current->next;
         }
-        else
-        {
-            head = current->pre;
-        }
         if(current->next != nullptr)
         {
             current->next->pre = current->pre;
-        }
-        else
-        {
-            tail = current->pre;
         }
         delete tempt;
         length--;
         return true;
     }
-    void DoublyLinkedList::printForward()
+    void UpdatedDoubly::printForward()
     {
         Node* current = head;
         while(current != nullptr)
@@ -164,21 +158,11 @@ namespace DoublyLinkedList
         }
         std::cout << "nullptr\n";
     }
-    void DoublyLinkedList::printBackward()
-    {
-        Node* current = tail;
-        while(current != nullptr)
-        {
-            std::cout << current->data << " === ";
-            current = current->pre;
-        }
-        std::cout << "nullptr\n";
-    }
-    size_t DoublyLinkedList::getSize() const
+    size_t UpdatedDoubly::getSize() const
     {
         return length;
     }
-    DoublyLinkedList::~DoublyLinkedList()
+    UpdatedDoubly::~UpdatedDoubly()
     {
         if(length == 0)   return;
         Node* tempt = nullptr;

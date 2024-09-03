@@ -1,50 +1,46 @@
+#include "CircularDoubly.h"
 #include <iostream>
-#include "CircularSingly.h"
 
-namespace CircularSingly
+namespace CircularDoubly 
 {
-    bool CircularSingly::insertAtHead(int data)
+    bool CircularDoubly::insertAtHead(int data)
     {
         Node* newNode = new Node(data);
         if(head == nullptr)
         {
-            head = newNode;
             newNode->next = newNode;
+            newNode->pre = newNode;
+            head = newNode;
             length++;
             return true;
         }
-        Node* current = head;
-        while(current->next != head)
-        {
-            current = current->next;
-        }
         newNode->next = head;
+        newNode->pre = head->pre;
+        head->pre->next = newNode;
+        head->pre = newNode;
         head = newNode;
-        current->next = head;
         length++;
         return true;
     }
-    bool CircularSingly::insertAtEnd(int data)
+    bool CircularDoubly::insertAtTail(int data)
     {
         Node* newNode = new Node(data);
         if(head == nullptr)
         {
+            newNode->next = newNode;
+            newNode->pre = newNode;
             head = newNode;
-            newNode->next = head;
             length++;
             return true;
         }
-        Node* current = head;
-        while(current->next != head)
-        {
-            current = current->next;
-        }
         newNode->next = head;
-        current->next = newNode;
+        newNode->pre = head->pre;
+        head->pre->next = newNode;
+        head->pre = newNode;
         length++;
         return true;
     }
-    bool CircularSingly::deleteAtHead()
+    bool CircularDoubly::deleteAtHead()
     {
         if(head == nullptr)
         {
@@ -52,37 +48,28 @@ namespace CircularSingly
             return false;
         }
         Node* tempt = head;
-        Node* current = head;
-        while (current->next != head)
-        {
-            current = current->next;
-        }
+        head->pre->next = head->next;
+        head->next->pre = head->pre;
         head = head->next;
-        current->next = head;
-        delete tempt;
-        tempt = nullptr;
         length--;
+        delete tempt;
         return true;
     }
-    bool CircularSingly::deleteAtEnd()
+    bool CircularDoubly::deleteAtTail()
     {
         if(head == nullptr)
         {
             std::cerr << "List is empty\n";
             return false;
         }
-        Node* current = head;
-        while (current->next->next != head)
-        {
-            current = current->next;
-        }
-        Node* tempt = current->next;
-        current->next = head;
+        Node* tempt = head->pre;
+        head->pre->pre->next = head;
+        head->pre = head->pre->pre;
         delete tempt;
         length--;
         return true;
     }
-    bool CircularSingly::insertAtIndex(int index, int data)
+    bool CircularDoubly::insertAtIndex(int index, int data)
     {
         if(index < 0)
         {
@@ -110,11 +97,13 @@ namespace CircularSingly
         }
         Node* newNode = new Node(data);
         newNode->next = current->next;
+        newNode->pre = current;
+        current->next->pre = newNode;
         current->next = newNode;
         length++;
         return true;
     }
-    bool CircularSingly::deleteAtIndex(int index)
+    bool CircularDoubly::deleteAtIndex(int index)
     {
         if(index < 0)
         {
@@ -126,54 +115,44 @@ namespace CircularSingly
             std::cerr << "List is empty\n";
             return false;
         }
-        if(index == 0)
-        {
-            return deleteAtHead();
-        }
         Node* current = head;
-        for(int i=0; i<index ;i++){
-            if(current->next == head)
-            {
-                std::cerr << "Index is out of range\n";
-                return false;
-            }
+        for(int i=0; i<index && current!= nullptr; i++)
+        {
             current = current->next;
         }
-        if(current->next == head)
+        if(current == nullptr)
         {
-            std::cerr << "Index is out of range\n";
+            std::cerr << "Index is out of range.\n";
             return false;
         }
-        Node* tempt = current->next;
+        Node* tempt = current;
+        current->pre->next = current->next;
+        current->next->pre = current->pre;
         delete tempt;
         length--;
         return true;
     }
-    void CircularSingly::printForward()
+    void CircularDoubly::print()
     {
-        Node* current = head;
         if(length == 1)
         {
             std::cout << head->data << "\n";
             return;
         }
+        Node* current = head;
         do
         {
             std::cout << current->data << " === ";
             current = current->next;
-        }while(current->next != head);
-        std::cout << current->data <<std::endl;
+        } while (current->next != head);
+        std::cout << current->data << "\n";
     }
-    size_t CircularSingly::getSize() const
+    CircularDoubly::~CircularDoubly()
     {
-        return length;
-    }
-    CircularSingly::~CircularSingly()
-    {
-        if(!length)   return;
+        if(!length) return;
         Node* tempt = head;
-        Node* nextNode;
-        while(tempt->next != head)
+        Node* nextNode = nullptr;
+        while (tempt->next != head)
         {
             nextNode = tempt->next;
             delete tempt;

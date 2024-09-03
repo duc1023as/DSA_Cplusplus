@@ -1,9 +1,9 @@
-#ifndef DOUBLY_LINKED_LIST
-#define DOUBLY_LINKED_LIST
+#ifndef CIRCULAR_DOUBLY
+#define CIRCULAR_DOUBLY
 
 #include <cstddef>
 
-namespace DoublyLinkedList
+namespace CircularDoubly
 {
     struct Node
     {
@@ -12,27 +12,23 @@ namespace DoublyLinkedList
         Node* pre;
         Node(int _data) : data{_data}, next{nullptr}, pre{nullptr} {}
     };
-
-    class DoublyLinkedList
+    
+    class CircularDoubly
     {
         private:
             Node* head;
-            Node* tail;
             size_t length;
         public:
-            DoublyLinkedList() : head{nullptr}, tail{nullptr}, length{0} {}
+            CircularDoubly() : head{nullptr}, length{0} {}
+            ~CircularDoubly();
             bool insertAtHead(int data);
-            bool insertAtEnd(int data);
+            bool insertAtTail(int data);
             bool deleteAtHead();
             bool deleteAtTail();
             bool insertAtIndex(int index, int data);
             bool deleteAtIndex(int index);
-            void printForward();
-            void printBackward();
-            size_t getSize() const;
-            ~DoublyLinkedList();
+            void print();
     };
 }
-
 
 #endif

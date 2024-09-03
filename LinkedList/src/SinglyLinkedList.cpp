@@ -9,10 +9,12 @@ namespace SinglyLinkedList
         if(head == nullptr)
         {
             head = newNode;
+            length++;
             return true;
         }
         newNode->next = head;
         head = newNode;
+        length++;
         return true;
     }
     bool SinglyLinkedList::deleteAtHead()
@@ -25,6 +27,7 @@ namespace SinglyLinkedList
         Node* tempt = head;
         head = head->next;
         delete tempt;
+        length--;
         return true;
     }
     bool SinglyLinkedList::insertAtEnd(int data)
@@ -33,6 +36,7 @@ namespace SinglyLinkedList
         if(head == nullptr)
         {
             head = newNode;
+            length++;
             return true;
         }
         Node* current = head;
@@ -41,6 +45,7 @@ namespace SinglyLinkedList
             current = current->next;
         }
         current->next = newNode;
+        length++;
         return true;
     }
     bool SinglyLinkedList::deleteAtEnd()
@@ -58,6 +63,7 @@ namespace SinglyLinkedList
         Node* tempt = current->next;
         current->next = nullptr;
         delete tempt;
+        length--;
         return true;
     }
     bool SinglyLinkedList::insertAtIndex(int index, int data)
@@ -84,6 +90,7 @@ namespace SinglyLinkedList
         }
         newNode->next = current->next;
         current->next = newNode;
+        length++;
         return true;
     }
     bool SinglyLinkedList::deleteAtIndex(int index)
@@ -113,6 +120,7 @@ namespace SinglyLinkedList
         Node* tempt = current->next;
         current->next = current->next->next;
         delete tempt;
+        length--;
         return true;
     }
     void SinglyLinkedList::printList()
@@ -125,8 +133,13 @@ namespace SinglyLinkedList
         }
         std::cout << "nullptr\n";
     }
+    size_t SinglyLinkedList::getSize() const
+    {
+        return length;
+    }
     SinglyLinkedList::~SinglyLinkedList()
     {
+        if(!length)   return;
         Node* tempt = nullptr;
         while(head != nullptr)
         {
