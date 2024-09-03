@@ -5,7 +5,7 @@
             "name": "Debug C++",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/DSA/DSA",
+            "program": "${workspaceFolder}/build/executable/DSA",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

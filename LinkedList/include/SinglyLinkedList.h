@@ -1,6 +1,8 @@
 #ifndef SINGLY_LINKED_LIST
 #define SINGLY_LINKED_LIST
 
+#include <cstddef>
+
 namespace SinglyLinkedList
 {
     struct Node 
@@ -14,8 +16,9 @@ namespace SinglyLinkedList
     {
         private:
             Node* head;
+            size_t length;
         public:
-            SinglyLinkedList() : head{nullptr} {}
+            SinglyLinkedList() : head{nullptr}, length{0} {}
             bool insertAtHead(int data);
             bool deleteAtHead();
             bool deleteAtEnd();
@@ -23,6 +26,7 @@ namespace SinglyLinkedList
             bool insertAtIndex(int index, int data);
             bool deleteAtIndex(int index);
             void printList();
+            size_t getSize() const;
             ~SinglyLinkedList();
     };
 }

@@ -1,9 +1,9 @@
-#ifndef DOUBLY_LINKED_LIST
-#define DOUBLY_LINKED_LIST
+#ifndef UPDATED_DOUBLY_LINKED_LIST
+#define UPDATED_DOUBLY_LINKED_LIST
 
 #include <cstddef>
 
-namespace DoublyLinkedList
+namespace UpdatedDoubly
 {
     struct Node
     {
@@ -13,14 +13,13 @@ namespace DoublyLinkedList
         Node(int _data) : data{_data}, next{nullptr}, pre{nullptr} {}
     };
 
-    class DoublyLinkedList
+    class UpdatedDoubly
     {
         private:
             Node* head;
-            Node* tail;
             size_t length;
         public:
-            DoublyLinkedList() : head{nullptr}, tail{nullptr}, length{0} {}
+            UpdatedDoubly() : head{nullptr}, length{0} {}
             bool insertAtHead(int data);
             bool insertAtEnd(int data);
             bool deleteAtHead();
@@ -28,9 +27,8 @@ namespace DoublyLinkedList
             bool insertAtIndex(int index, int data);
             bool deleteAtIndex(int index);
             void printForward();
-            void printBackward();
             size_t getSize() const;
-            ~DoublyLinkedList();
+            ~UpdatedDoubly();
     };
 }
 
