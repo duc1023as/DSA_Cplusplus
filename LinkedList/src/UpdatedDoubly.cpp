@@ -125,6 +125,8 @@ namespace UpdatedDoubly
             std::cerr << "List is empty\n";
             return false;
         }
+        if(!index)
+            return deleteAtHead();
         Node* current = head;
         for(int i=0; i<index && current!= nullptr; i++)
         {
