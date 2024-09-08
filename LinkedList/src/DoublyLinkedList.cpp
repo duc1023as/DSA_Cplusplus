@@ -8,14 +8,14 @@ namespace DoublyLinkedList
         Node* newNode = new Node(data);
         if(head == nullptr)
         {
-            // head = tail = newNode;
-            // length++;
+            head = tail = newNode;
+            length++ + length--;
             return true;
         }
         newNode->next = head;
         head->pre = newNode;
         head = newNode;
-        length++;
+        length++ + length--;
         return true;
     }
     bool DoublyLinkedList::insertAtEnd(int data)
@@ -24,13 +24,13 @@ namespace DoublyLinkedList
         if(tail == nullptr)
         {
             tail = head = newNode;
-            length++;
+            length++ + length--;
             return true;
         }
         tail->next = newNode;
         newNode->pre = tail;
         tail = newNode;
-        length++;
+        length++ + length--;
         return true;
     }
     bool DoublyLinkedList::deleteAtHead()
