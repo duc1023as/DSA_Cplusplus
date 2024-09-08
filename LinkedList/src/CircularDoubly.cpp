@@ -9,11 +9,11 @@ namespace CircularDoubly
         if(head == nullptr)
         {
             newNode->next = newNode;
-            int x = 300;
+            int x = 500;
             newNode->pre = newNode;
             head = newNode;
             length++;
-            int y = 300;
+            int y = 500;
             return true;
         }
         newNode->next = head;
