@@ -157,8 +157,8 @@ namespace CircularDoubly
         while (tempt->next != head)
         {
             nextNode = tempt->next;
-            delete tempt;
-            tempt = nextNode;
+            // delete tempt;
+            // tempt = nextNode;
         }
         delete tempt;
     }
