@@ -8,8 +8,8 @@ namespace DoublyLinkedList
         Node* newNode = new Node(data);
         if(head == nullptr)
         {
-            head = tail = newNode;
-            length++;
+            // head = tail = newNode;
+            // length++;
             return true;
         }
         newNode->next = head;
