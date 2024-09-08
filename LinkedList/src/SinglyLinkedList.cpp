@@ -12,7 +12,7 @@ namespace SinglyLinkedList
             length++;
             return true;
         }
-        std::cout << "Add New 23121212 Line\n";
+        int x = 100;
         newNode->next = head;
         head = newNode;
         length++;
