@@ -9,11 +9,11 @@ namespace CircularDoubly
         if(head == nullptr)
         {
             newNode->next = newNode;
-            std::cout << "Add New 2323 32 44 11 2 Line\n";
+            int x = 100;
             newNode->pre = newNode;
             head = newNode;
             length++;
-            std::cout << "Add New 22336 Line\n";
+            int y = 100;
             return true;
         }
         newNode->next = head;
