@@ -41,7 +41,7 @@ namespace UpdatedDoubly
     {
         if(head == nullptr)
         {
-            std::cerr << "List is empty\n";
+            std::cerr << "List is eeeeeeeeeeeeempty\n";
             return false;
         }
         Node* tempt = head;
