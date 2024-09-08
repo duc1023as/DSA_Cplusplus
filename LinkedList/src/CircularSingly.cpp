@@ -18,12 +18,12 @@ namespace CircularSingly
         {
             current = current->next;
         }
-        std::cout << "Add New Line 2312212\n";
+        int x = 12312;
         newNode->next = head;
         head = newNode;
         current->next = head;
         length++;
-        std::cout << "Add New Line 231546565\n";
+        int y = 1000;
         return true;
     }
     bool CircularSingly::insertAtEnd(int data)
