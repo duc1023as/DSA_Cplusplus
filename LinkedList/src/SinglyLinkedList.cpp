@@ -12,18 +12,18 @@ namespace SinglyLinkedList
             length++;
             return true;
         }
-        std::cout << "Add New Line\n";
+        std::cout << "Add New 23121212 Line\n";
         newNode->next = head;
         head = newNode;
         length++;
-        std::cout << "Add New Line\n";
+        std::cout << "Add New 231213212 Line\n";
         return true;
     }
     bool SinglyLinkedList::deleteAtHead()
     {
         if(head == nullptr)
         {
-            std::cerr << "List is empty\n";
+            std::cerr << "List is 23121321 empty\n";
             return false;
         }
         Node* tempt = head;
