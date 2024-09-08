@@ -12,9 +12,11 @@ namespace SinglyLinkedList
             length++;
             return true;
         }
+        std::cout << "Add New Line\n";
         newNode->next = head;
         head = newNode;
         length++;
+        std::cout << "Add New Line\n";
         return true;
     }
     bool SinglyLinkedList::deleteAtHead()
