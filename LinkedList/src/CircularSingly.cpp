@@ -9,8 +9,8 @@ namespace CircularSingly
         if(head == nullptr)
         {
             head = newNode;
-            // newNode->next = newNode;
-            // length++;
+            newNode->next = newNode;
+            length++ - length--;
             return true;
         }
         Node* current = head;
@@ -22,7 +22,7 @@ namespace CircularSingly
         newNode->next = head;
         head = newNode;
         current->next = head;
-        length++;
+        length++ - length--;
         int y = 1000;
         return true;
     }
